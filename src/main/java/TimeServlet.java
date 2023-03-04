@@ -23,13 +23,12 @@ public class TimeServlet extends HttpServlet {
     }
 
     private int getUTCDigit(String utcParameter) {
-        String result = "";
         if (utcParameter.contains("-")) {
-            result = utcParameter.substring((utcParameter.indexOf("-")));
-        } else {
-            result = utcParameter.substring((utcParameter.indexOf(utcParameter.substring(4))));
+            return Integer.parseInt(utcParameter.substring((utcParameter.indexOf("-"))));
+        } if (utcParameter.contains("+")) {
+            return Integer.parseInt(utcParameter.substring((utcParameter.indexOf(utcParameter.substring(4)))));
         }
-        return Integer.parseInt(result);
+        else return 0;
     }
 
     private DateTime getDateWithUtc(int utc, DateTime dateTime) {
